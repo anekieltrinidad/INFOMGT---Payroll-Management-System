@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PayrollSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Departments" FromRole="Departments" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Departments" FromRole="Employees" ToRole="Departments" />
+    <NavigationProperty Name="PersonalDetails" Relationship="Self.FK_PersonalDetails_Employees" FromRole="Employees" ToRole="PersonalDetails" />
+    <NavigationProperty Name="Salaries" Relationship="Self.FK_Salaries_Employees" FromRole="Employees" ToRole="Salaries" />
+    <NavigationProperty Name="UserLogins" Relationship="Self.FK_UserLogins_Employees" FromRole="Employees" ToRole="UserLogins" />
+  </EntityType>
+  <EntityType Name="PersonalDetail">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="GivenName" />
+      <PropertyRef Name="LastName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="GivenName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int16" Nullable="false" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Contact" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_PersonalDetails_Employees" FromRole="PersonalDetails" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="SalaryID" />
+    </Key>
+    <Property Name="SalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="DailyRate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="WorkedDaysByMonth" Type="Int16" Nullable="false" />
+    <Property Name="GrossSalary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="NetSalary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ForTheMonthOf" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PreparedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DatePrepared" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Released" Type="Boolean" Nullable="false" />
+    <Property Name="ActiveTransaction" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Salaries_Employees" FromRole="Salaries" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="SalariesAudit">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalaryID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="ActionType" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MadeBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Application" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SalariesHistory">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalaryID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentDaily" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="NewDaily" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CurrentWorkDays" Type="Int16" Nullable="false" />
+    <Property Name="NewWorkDays" Type="Int16" Nullable="false" />
+    <Property Name="CurrentMonth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NewMonth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MadeBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_UserLogins_Employees" FromRole="UserLogins" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="viewEmployeeRecord">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+      <PropertyRef Name="Employee_Name" />
+      <PropertyRef Name="Department" />
+      <PropertyRef Name="Position" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employee_Name" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="viewSalaryRecord">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+      <PropertyRef Name="Department_ID" />
+      <PropertyRef Name="Daily_Rate" />
+      <PropertyRef Name="Number_of_Days_Work_within_the_Month" />
+      <PropertyRef Name="Gross_Salary" />
+      <PropertyRef Name="Net_Salary" />
+      <PropertyRef Name="Prepared_By" />
+      <PropertyRef Name="Date_Prepared" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Department_ID" Type="Int32" Nullable="false" />
+    <Property Name="Daily_Rate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Number_of_Days_Work_within_the_Month" Type="Int16" Nullable="false" />
+    <Property Name="Gross_Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Net_Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Prepared_for_The_Month_of" Type="Int32" />
+    <Property Name="Prepared_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date_Prepared" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Employees_Departments">
+    <End Role="Departments" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalDetails_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="PersonalDetails" Type="Self.PersonalDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="PersonalDetails">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salaries_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Salaries" Type="Self.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Salaries">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLogins_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="UserLogins" Type="Self.UserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PayrollSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="PersonalDetails" EntityType="Self.PersonalDetail" />
+    <EntitySet Name="Salaries" EntityType="Self.Salary" />
+    <EntitySet Name="SalariesAudits" EntityType="Self.SalariesAudit" />
+    <EntitySet Name="SalariesHistories" EntityType="Self.SalariesHistory" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+    <EntitySet Name="viewEmployeeRecords" EntityType="Self.viewEmployeeRecord" />
+    <EntitySet Name="viewSalaryRecords" EntityType="Self.viewSalaryRecord" />
+    <AssociationSet Name="FK_Employees_Departments" Association="Self.FK_Employees_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalDetails_Employees" Association="Self.FK_PersonalDetails_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="PersonalDetails" EntitySet="PersonalDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salaries_Employees" Association="Self.FK_Salaries_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Salaries" EntitySet="Salaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLogins_Employees" Association="Self.FK_UserLogins_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PayrollSystemModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PayrollSystemModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="uspDeleteSalary">
+      <Parameter Name="salaryID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspGetEmployeesRecords" ReturnType="Collection(PayrollSystemModel.uspGetEmployeesRecords_Result)">
+      <Parameter Name="search" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspGetSalaryRecordsByID" ReturnType="Collection(PayrollSystemModel.uspGetSalaryRecordsByID_Result)">
+      <Parameter Name="empID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspInsertSalary">
+      <Parameter Name="empID" Mode="In" Type="Int32" />
+      <Parameter Name="dailyRate" Mode="In" Type="Decimal" />
+      <Parameter Name="workdays" Mode="In" Type="Int32" />
+      <Parameter Name="forMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="uspUpdateSalary">
+      <Parameter Name="salaryID" Mode="In" Type="Int32" />
+      <Parameter Name="empID" Mode="In" Type="Int32" />
+      <Parameter Name="dailyRate" Mode="In" Type="Decimal" />
+      <Parameter Name="workdays" Mode="In" Type="Int32" />
+      <Parameter Name="forMonth" Mode="In" Type="DateTime" />
+      <Parameter Name="status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="uspGetSalaryRecordsByID1" ReturnType="Collection(PayrollSystemModel.uspGetSalaryRecordsByID1_Result)">
+      <Parameter Name="empID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="checkEmployeeDepartment" ReturnType="Collection(String)">
+      <Parameter Name="search" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspRegisterUser">
+      <Parameter Name="empID" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="uspCheckEmployeeDepartment" ReturnType="Collection(String)">
+      <Parameter Name="search" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspGetLoginCredentials" ReturnType="Collection(PayrollSystemModel.uspGetLoginCredentials_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="checkEmployeeDepartment1" ReturnType="Collection(String)">
+      <Parameter Name="search" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="uspGetEmployeesRecords_Result">
+    <Property Type="Int32" Name="Employee_ID" Nullable="false" />
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="Department" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Position" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="uspGetSalaryRecordsByID_Result">
+    <Property Type="Int32" Name="Employee_ID" Nullable="false" />
+    <Property Type="Int32" Name="Department_ID" Nullable="false" />
+    <Property Type="Decimal" Name="Daily_Rate" Nullable="false" Precision="19" />
+    <Property Type="Int16" Name="Number_of_Days_Work_within_the_Month" Nullable="false" />
+    <Property Type="Decimal" Name="Gross_Salary" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="Net_Salary" Nullable="false" Precision="19" />
+    <Property Type="Int32" Name="Prepared_for_The_Month_of" Nullable="true" />
+    <Property Type="String" Name="Prepared_By" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Date_Prepared" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="uspGetSalaryRecordsByID1_Result">
+    <Property Type="Int32" Name="Salary_ID" Nullable="false" />
+    <Property Type="Int32" Name="Employee_ID" Nullable="false" />
+    <Property Type="Decimal" Name="Daily_Rate" Nullable="false" Precision="19" />
+    <Property Type="Int16" Name="Number_of_Days_Work_within_the_Month" Nullable="false" />
+    <Property Type="Decimal" Name="Gross_Salary" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="Net_Salary" Nullable="false" Precision="19" />
+    <Property Type="Int32" Name="Prepared_for_The_Month_of" Nullable="true" />
+    <Property Type="String" Name="Prepared_By" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Date_Prepared" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="uspGetLoginCredentials_Result">
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

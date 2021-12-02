@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PayrollSystemModelStoreContainer" CdmEntityContainer="PayrollSystemEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="PayrollSystemModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="PayrollSystemModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalDetails">
+      <EntityTypeMapping TypeName="PayrollSystemModel.PersonalDetail">
+        <MappingFragment StoreEntitySet="PersonalDetails">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="PayrollSystemModel.Salary">
+        <MappingFragment StoreEntitySet="Salaries">
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DailyRate" ColumnName="DailyRate" />
+          <ScalarProperty Name="WorkedDaysByMonth" ColumnName="WorkedDaysByMonth" />
+          <ScalarProperty Name="GrossSalary" ColumnName="GrossSalary" />
+          <ScalarProperty Name="NetSalary" ColumnName="NetSalary" />
+          <ScalarProperty Name="ForTheMonthOf" ColumnName="ForTheMonthOf" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="DatePrepared" ColumnName="DatePrepared" />
+          <ScalarProperty Name="Released" ColumnName="Released" />
+          <ScalarProperty Name="ActiveTransaction" ColumnName="ActiveTransaction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalariesAudits">
+      <EntityTypeMapping TypeName="PayrollSystemModel.SalariesAudit">
+        <MappingFragment StoreEntitySet="SalariesAudit">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="MadeBy" ColumnName="MadeBy" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalariesHistories">
+      <EntityTypeMapping TypeName="PayrollSystemModel.SalariesHistory">
+        <MappingFragment StoreEntitySet="SalariesHistory">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="CurrentDaily" ColumnName="CurrentDaily" />
+          <ScalarProperty Name="NewDaily" ColumnName="NewDaily" />
+          <ScalarProperty Name="CurrentWorkDays" ColumnName="CurrentWorkDays" />
+          <ScalarProperty Name="NewWorkDays" ColumnName="NewWorkDays" />
+          <ScalarProperty Name="CurrentMonth" ColumnName="CurrentMonth" />
+          <ScalarProperty Name="NewMonth" ColumnName="NewMonth" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="MadeBy" ColumnName="MadeBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PayrollSystemModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="PayrollSystemModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewEmployeeRecords">
+      <EntityTypeMapping TypeName="PayrollSystemModel.viewEmployeeRecord">
+        <MappingFragment StoreEntitySet="viewEmployeeRecords">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee Name" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewSalaryRecords">
+      <EntityTypeMapping TypeName="PayrollSystemModel.viewSalaryRecord">
+        <MappingFragment StoreEntitySet="viewSalaryRecords">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department ID" />
+          <ScalarProperty Name="Daily_Rate" ColumnName="Daily Rate" />
+          <ScalarProperty Name="Number_of_Days_Work_within_the_Month" ColumnName="Number of Days Work within the Month" />
+          <ScalarProperty Name="Gross_Salary" ColumnName="Gross Salary" />
+          <ScalarProperty Name="Net_Salary" ColumnName="Net Salary" />
+          <ScalarProperty Name="Prepared_for_The_Month_of" ColumnName="Prepared for The Month of" />
+          <ScalarProperty Name="Prepared_By" ColumnName="Prepared By" />
+          <ScalarProperty Name="Date_Prepared" ColumnName="Date Prepared" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PayrollSystemModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PayrollSystemModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PayrollSystemModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PayrollSystemModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PayrollSystemModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PayrollSystemModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PayrollSystemModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PayrollSystemModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PayrollSystemModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="uspDeleteSalary" FunctionName="PayrollSystemModel.Store.uspDeleteSalary" />
+    <FunctionImportMapping FunctionImportName="uspGetEmployeesRecords" FunctionName="PayrollSystemModel.Store.uspGetEmployeesRecords">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PayrollSystemModel.uspGetEmployeesRecords_Result">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee Name" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="uspInsertSalary" FunctionName="PayrollSystemModel.Store.uspInsertSalary" />
+    <FunctionImportMapping FunctionImportName="uspUpdateSalary" FunctionName="PayrollSystemModel.Store.uspUpdateSalary" />
+    <FunctionImportMapping FunctionImportName="uspGetSalaryRecordsByID1" FunctionName="PayrollSystemModel.Store.uspGetSalaryRecordsByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PayrollSystemModel.uspGetSalaryRecordsByID1_Result">
+          <ScalarProperty Name="Salary_ID" ColumnName="Salary ID" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+          <ScalarProperty Name="Daily_Rate" ColumnName="Daily Rate" />
+          <ScalarProperty Name="Number_of_Days_Work_within_the_Month" ColumnName="Number of Days Work within the Month" />
+          <ScalarProperty Name="Gross_Salary" ColumnName="Gross Salary" />
+          <ScalarProperty Name="Net_Salary" ColumnName="Net Salary" />
+          <ScalarProperty Name="Prepared_for_The_Month_of" ColumnName="Prepared for The Month of" />
+          <ScalarProperty Name="Prepared_By" ColumnName="Prepared By" />
+          <ScalarProperty Name="Date_Prepared" ColumnName="Date Prepared" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="uspRegisterUser" FunctionName="PayrollSystemModel.Store.uspRegisterUser" />
+    <FunctionImportMapping FunctionImportName="uspGetLoginCredentials" FunctionName="PayrollSystemModel.Store.uspGetLoginCredentials">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PayrollSystemModel.uspGetLoginCredentials_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="checkEmployeeDepartment1" FunctionName="PayrollSystemModel.Store.checkEmployeeDepartment" />
+  </EntityContainerMapping>
+</Mapping>
